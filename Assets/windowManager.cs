@@ -31,15 +31,20 @@ public class windowManager : MonoBehaviour
             Time.timeScale = 1;
 
         if (!startGame)
+        {
+            StartCoroutine(Blackout(false, closeInterpface.GetComponent<Image>().color, closeInterpface));
             Time.timeScale = 0;
+        }
         else
+        {
             Time.timeScale = 1;
+            StartCoroutine(Blackout(true, closeInterpface.GetComponent<Image>().color, closeInterpface));
+        }
 
         if (Input.GetKeyDown("escape"))  // если нажата клавиша Esc (Escape)
         {
             stopGame();
         }
-
     }
 
     public void continueGame()
@@ -52,7 +57,7 @@ public class windowManager : MonoBehaviour
             buttons[0].SetActive(false);
             buttons[1].SetActive(false);
             buttons[2].SetActive(false);
-            StartCoroutine(Blackout(true, closeInterpface.GetComponent<Image>().color, closeInterpface));
+            //StartCoroutine(Blackout(true, closeInterpface.GetComponent<Image>().color, closeInterpface));
         }
 
     }
@@ -76,7 +81,7 @@ public class windowManager : MonoBehaviour
         buttons[1].SetActive(true);
         if (!timeLine.timeToDie)
             buttons[2].SetActive(true);
-        StartCoroutine(Blackout(false, closeInterpface.GetComponent<Image>().color, closeInterpface));
+        //StartCoroutine(Blackout(false, closeInterpface.GetComponent<Image>().color, closeInterpface));
 
     }
     IEnumerator Blackout(bool inverse, Color color, GameObject GameObject)
